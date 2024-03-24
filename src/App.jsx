@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './Components/Header/Header';
-const tg = window.Telegram.WebApp;
+import { useTelegram } from './Hooks/useTelegram';
+
 function App() {
+  const { onToggleButton, tg } = useTelegram();
+
   React.useEffect(() => {
     tg.ready();
   }, []);
 
   return (
     <>
-    <Header/>
-      <h2>work</h2>
+      <Header />
+      <button onClick={onToggleButton}>toggle</button>
     </>
   );
 }
