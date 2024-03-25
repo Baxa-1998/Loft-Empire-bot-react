@@ -21,7 +21,7 @@ export default function Form() {
     return () => {
       tg.offEvent('mainButtonClicked', onSendData);
     };
-  }, []);
+  }, [onSendData]);
 
   const { tg } = useTelegram();
 
@@ -29,7 +29,7 @@ export default function Form() {
     tg.MainButton.setParams({
       text: 'Отправить данные',
     });
-  }, [onSendData]);
+  }, []);
 
   React.useEffect(() => {
     // валидация 
