@@ -7,10 +7,14 @@ export default function Form() {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [city, setCity] = React.useState('');
+
+  // отправляем данные в backend 
   const onSendData = useCallback(() => {
     const data = { number, name, email, city };
+
     tg.sendData(JSON.stringify(data));
-  }, []);
+
+  }, [number, name, city, email]);
 
   React.useEffect(() => {
     tg.onEvent('mainButtonClicked', onSendData);
@@ -18,14 +22,17 @@ export default function Form() {
       tg.offEvent('mainButtonClicked', onSendData);
     };
   }, []);
+
   const { tg } = useTelegram();
+
   React.useEffect(() => {
     tg.MainButton.setParams({
       text: 'Отправить данные',
     });
-  }, []);
+  }, [onSendData]);
 
   React.useEffect(() => {
+    // валидация 
     if (!number || !city) {
       tg.MainButton.hide();
     } else {
