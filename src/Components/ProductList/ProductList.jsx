@@ -11,7 +11,7 @@ const product = [
 
 const getTotalPrice = (item = []) => {
   return item.reduce((item, acc) => {
-    return (item += acc);
+    return (acc += item.price);
   }, 0);
 };
 export default function ProductList() {
