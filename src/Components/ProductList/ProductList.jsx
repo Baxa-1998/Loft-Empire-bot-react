@@ -9,11 +9,13 @@ const product = [
   { id: '3', title: 'Диван', description: 'Диваны в стиле Loft', price: 1800000 },
 ];
 
-const getTotalPrice = (item = []) => {
-  return item.reduce((item, acc) => {
-    return (acc += item.price);
-  }, 0);
-};
+
+
+const getTotalPrice = (items = []) => {
+  return items.reduce((acc, item) => {
+      return acc += item.price
+  }, 0)
+}
 export default function ProductList() {
   const { tg } = useTelegram();
   const [addItems, setAddItems] = React.useState([]);
